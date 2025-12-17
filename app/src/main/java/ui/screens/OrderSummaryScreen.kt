@@ -46,7 +46,7 @@ fun OrderSummaryScreen(
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
-            // Encabezado manual (sin TopAppBar)
+
             Row(verticalAlignment = Alignment.CenterVertically) {
                 TextButton(onClick = onBack) {
                     Text("< Atrás")
@@ -64,7 +64,7 @@ fun OrderSummaryScreen(
                 Text("No hay productos seleccionados.")
             } else {
 
-                // Lista de productos del carrito
+
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -76,7 +76,7 @@ fun OrderSummaryScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Switch VIP
+
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -90,7 +90,7 @@ fun OrderSummaryScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Totales
+
                 Text("Subtotal: $${totals.subtotal}")
                 Text("Neto con descuento: $${totals.netAfterDiscount}")
                 Text("IVA (19%): $${totals.tax}")
@@ -101,7 +101,7 @@ fun OrderSummaryScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Botón confirmar
+
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = { onConfirmOrder(isVip) }
@@ -109,7 +109,7 @@ fun OrderSummaryScreen(
                     Text("Confirmar pedido")
                 }
 
-                // Texto de “API externa” (por ahora simulado)
+
                 if (state.externalAdvice != null) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(

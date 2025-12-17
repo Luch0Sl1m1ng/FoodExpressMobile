@@ -1,31 +1,39 @@
 package com.example.foodexpressmobile.data
 
 import com.example.foodexpressmobile.model.Product
-import kotlinx.coroutines.delay
+import com.example.foodexpressmobile.network.ApiClients
+import com.example.foodexpressmobile.network.OrderItemDto
+import com.example.foodexpressmobile.network.OrderRequestDto
+import com.example.foodexpressmobile.network.OrderResponseDto
 
 class FoodRepository {
-
-    suspend fun getProducts(): List<Product> {
-        delay(500)
-        return listOf(
-            Product(1, "Hamburguesa Clásica", 8990),
-            Product(2, "Papas Fritas Grandes", 3990),
-            Product(3, "Coca Cola Mediana", 2290),
-            Product(4, "Pizza Personal", 7990),
-            Product(5, "Ensalada César", 5490)
-        )
+    suspend fun loadProductsFromApi(): List<Product> {
+        return ApiClients.foodApi.getProducts()
     }
-
     suspend fun sendOrder(
-        selected: List<Product>,
+        cart: List<Product>,
         isVip: Boolean
-    ): String {
-        delay(500)
-        return "PED-${System.currentTimeMillis()}"
+    ): OrderResponseDto {
+
+        val items = cart.map { product ->
+            OrderItemDto(
+                productId = product.id,
+                quantity = 1
+            )
+        }
+
+        val request = OrderRequestDto(
+            items = items,
+            isVip = isVip
+        )
+
+        return ApiClients.foodApi.createOrder(request)
     }
 
-    suspend fun getExternalAdvice(): String {
-        delay(300)
-        return "Recuerda siempre confirmar la dirección antes de enviar tu pedido."
+
+    suspend fun loadExternalAdvice(): String {
+        val response = ApiClients.adviceApi.getAdvice()
+
+        return response.slip.advice
     }
 }

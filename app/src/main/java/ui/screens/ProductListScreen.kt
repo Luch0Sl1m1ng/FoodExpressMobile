@@ -38,7 +38,7 @@ fun ProductListScreen(
                 .padding(padding)
                 .fillMaxSize()
         ) {
-            // Encabezado simple (sin TopAppBar)
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
