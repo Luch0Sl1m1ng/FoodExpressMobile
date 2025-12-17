@@ -8,7 +8,7 @@ Aplicación móvil desarrollada en **Kotlin** con **Jetpack Compose** para gesti
 
 ## 2. Integrantes
 
-- [Tu nombre completo] – Sección [tu sección]
+- Luis Rojas
 
 ## 3. Arquitectura y patrón usado
 
